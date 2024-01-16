@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% block content %}
+        <table id='posts' border=1>
+            <th>ABTOP</th>
+            <th>Заголовок</th>
+            <th>Текст поста</th>
+            <th>Дата создания</th>
+        {% for post in posts %}
+        <tr>
+            <td align="center">{{post.author}}</td>
+            <td align="center">{{post.title}}<br></td>
+            <td align="center">{{post.text}}<br></td>
+            <td align="center">{{post.created_date}}<br></td>
+        </tr>
+        {% endfor %}
+{% endblock content %}
