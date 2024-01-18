@@ -46,7 +46,7 @@ def post_add(request):
             post.author = post_form.cleaned_data['author']
             post.title = post_form.cleaned_data['title']
             post.text = post_form.cleaned_data['text']
-            post.publish()
+            post.save()
             return post_list(request)
  
 
