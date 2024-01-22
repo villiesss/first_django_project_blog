@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style type="text/css">
+            table {
+             width: 300px;
+            }
+            th {
+             background: #8c13e2; 
+             color: #fffff0; 
+            }
+            td, th {
+             padding: 3px; 
+            }
+           </style>
+    </head>
+
+    <body TEXT="#000000" BGCOLOR="yellow" LINK="green">
+        {% block head %}
+        {% endblock head %}
+        <ul>
+            {% for item in menu %}
+                <h2><li><a href="{% url item.url_name %}">{{item.title}}</a></li></h2>
+            {% endfor %}
+        </ul>
+
+    {% block content %}
+    {% endblock  %} 
+    </body>
+</html>
