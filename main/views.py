@@ -40,13 +40,18 @@ def post_add(request):
         return render(request, "main/post_add.html", context)
     
     if request.method == "POST":
-        post_form = PostForm(request.POST)
+        post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
             post = Post()
             post.author = post_form.cleaned_data['author']
             post.title = post_form.cleaned_data['title']
             post.text = post_form.cleaned_data['text']
+            post.image = post_form.cleaned_data['image']
             post.save()
             return post_list(request)
  
-
+def post_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    title = "Информация о посте"
+    context = {"post": post, "title": title, "menu":menu}
+    return render(request, template_name="main/post_detail.html", context=context)
