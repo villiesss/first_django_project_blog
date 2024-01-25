@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Post
 from .forms import PostForm
+from django.http import HttpResponsePermanentRedirect
 
 # Create your views here.
 
@@ -11,17 +12,20 @@ menu = [{"title" : "Посты", "url_name" : "main:post_list"},
         ]
 # Main page 
 def index_root(request):
-    return render(request, 'main/index_root.html')
-
+    return HttpResponsePermanentRedirect("/blog/posts")
 # Main page of main app
 def index(request):
-    return render(request, 'main/index.html', context={"menu" : menu})
+    return HttpResponsePermanentRedirect("/blog/posts")
 
 def about(request):
-    return render(request, 'main/about.html')
+    title = "О сайте"
+    context = {"title": title, "menu": menu}
+    return render(request, 'main/about.html', context=context)
 
 def contacts(request):
-    return render(request, 'main/contacts.html')
+    title = "Контакты"
+    context = {"title": title, "menu": menu}
+    return render(request, 'main/contacts.html', context=context)
 
 # отображения списка постов
 def post_list(request):
