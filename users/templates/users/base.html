@@ -1,0 +1,79 @@
+{% load static %}
+{% load thumbnail %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" type="text/css">
+
+        <script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" ></script>
+        <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" ></script>
+        <script src="{% static 'js/popper.min.js' %}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" ></script>
+        <style type="text/css">
+            table {
+             width: 800px;
+            }
+            th {
+             background: #8c13e2; 
+             color: #fffff0; 
+            }
+            td, th {
+             padding: 3px; 
+            }
+           </style>
+    </head>
+
+    <body TEXT="#000000" BGCOLOR="yellow" LINK="green">
+
+        {% block head %}
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand" href="#">
+            <img src="{% static 'img/img_blog.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            My Blog 
+          </a>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="{% url menu.0.url_name %}">{{menu.0.title}}</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url menu.1.url_name %}">{{menu.1.title}}<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url menu.2.url_name %}">{{menu.2.title}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url menu.3.url_name %}">{{menu.3.title}}</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Выпадающее меню
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        {% endblock head %}
+        <img src="{% static 'img/img_blog.jpg' %}">
+        <ul>
+            {% for item in menu %}
+                <h2><li><a href="{% url item.url_name %}">{{item.title}}</a></li></h2>
+            {% endfor %}
+        </ul>
+
+    {% block content %}
+    {% endblock  %} 
+    </body>
+</html>
