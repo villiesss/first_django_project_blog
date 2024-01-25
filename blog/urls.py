@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 from main import urls as blog_urls
-from main.views import index_root
+from main.views import post_list
 from blog import settings
 
 urlpatterns = [
-    path('', index_root),
+    path('', post_list),
     path('admin/', admin.site.urls),
     path('blog/', include (blog_urls)),
 ]
