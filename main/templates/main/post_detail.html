@@ -12,9 +12,11 @@
         <img src="{{im.url}}" width="{{im.width}}" height="{{im.height}}">
         {% endthumbnail %}
         <hr>
-        <a href="{% url "main:post_update" pk=post.id %}"> Редактировать </a>
+        {% if request.user == post.author or request.user.id == 1 %}
+            <a href="{% url "main:post_update" pk=post.id %}"> Редактировать </a>
         <hr>
-        <a href="{% url "main:post_delete" pk=post.id %}"> Удалить </a>
+            <a href="{% url "main:post_delete" pk=post.id %}"> Удалить </a>
+        {% endif %}
 
 {% endblock content %}
 
