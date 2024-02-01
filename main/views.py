@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
 from django.http import HttpResponsePermanentRedirect
@@ -60,3 +60,34 @@ def post_detail(request, pk):
     title = "Информация о посте"
     context = {"post": post, "title": title, "menu":menu}
     return render(request, template_name="main/post_detail.html", context=context)
+
+
+def post_update(request, pk):
+    post = Post.objects.get(pk=pk)
+    title = "Изменить пост"
+
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("main:post_detail", pk=pk)
+        
+    form = PostForm(instance=post)
+    return render(request, "main/post_update.html", context={"form": form, "title":title, "menu": menu})
+
+
+def post_delete(request, pk):
+    post = Post.objects.filter(pk=pk).first()
+
+    if request.method == "POST":
+        if "delete" in request.POST:
+            post.delete()
+            return redirect("main:post_list")
+        if "cancel" in request.POST:
+            return redirect("main:post_list")
+
+    
+    form = PostForm(instance=post)
+    return render(request, "main/post_delete.html", {"form": form, "menu": menu, "post":post})
+
+
