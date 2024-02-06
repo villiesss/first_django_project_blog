@@ -44,8 +44,8 @@
         {% block head %}
         <nav class="navbar navbar-light bg-light">
           <a class="navbar-brand" href="#">
-            <img src="{% static 'img/img_blog.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-            My Blog 
+            <img src="{% static 'img/star.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            eleMeNt's Blog 
           </a>
         </nav>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -82,7 +82,7 @@
         <img src="{% static 'img/img_blog.jpg' %}">
         <ul>
             {% for item in menu %}
-                <h2><li><a href="{% url item.url_name %}">{{item.title}}</a></li></h2>
+                <h2><li style="list-style-type:square"><a href="{% url item.url_name %}">{{item.title}}</a></li></h2>
             {% endfor %}
         </ul>
 
