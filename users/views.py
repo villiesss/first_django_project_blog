@@ -53,3 +53,6 @@ def get_user_info(request, pk):
 
 def pef():
     pass
+
+def xeru():
+    pass
