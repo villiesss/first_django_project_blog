@@ -49,3 +49,7 @@ def get_user_info(request, pk):
     user = User.objects.get(pk=pk)
     context = {"user":user, "menu":menu}
     return render(request, "users/user.html", context=context)
+
+
+def pef():
+    pass
