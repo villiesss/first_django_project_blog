@@ -6,7 +6,7 @@
     <form action="{% url 'main:post_add'  %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="Submit"> Create post </button>
+        <button type="Submit"> Создать пост </button>
     </form>
 
 {% endblock content %}
